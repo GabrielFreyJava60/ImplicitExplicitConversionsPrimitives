@@ -1,31 +1,8 @@
 function sumDigits(num) {
-    if (num === null || num === undefined) {
-      return NaN;
-    }
-  
-    let numStr = String(num);
-    const isNegative = numStr.startsWith('-');
-  
-    if (numStr.includes('.')) {
-      numStr = numStr.slice(0, numStr.indexOf('.'));
-    }
-  
-    if (isNegative) {
-      numStr = numStr.slice(1); 
-    }
-  
-    const numInt = Number(numStr);
-  
-    if (isNaN(numInt)) {
-      return NaN;
-    }
+    if (num == null || isNaN(num)) return NaN;
   
     let sum = 0;
-    let temp = Math.abs(numInt); 
-    while (temp > 0) {
-      sum += temp % 10;
-      temp = Math.floor(temp / 10);
-    }
+    for (let n = Math.abs(num) | 0; n > 0; sum += n % 10, n = n / 10 | 0);
   
     return sum;
   }
