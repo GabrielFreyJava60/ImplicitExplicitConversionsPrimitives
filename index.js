@@ -2,7 +2,11 @@ function sumDigits(num) {
     if (num == null || isNaN(num)) return NaN;
   
     let sum = 0;
-    for (let n = Math.abs(num) | 0; n > 0; sum += n % 10, n = n / 10 | 0);
+    let temp = Math.abs(num) | 0; 
+    while (temp > 0) {
+      sum += temp % 10;
+      temp = temp / 10 | 0; 
+    }
   
     return sum;
   }
