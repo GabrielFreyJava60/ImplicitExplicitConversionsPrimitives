@@ -4,40 +4,43 @@ function sumDigits(num) {
     }
   
     let numStr = String(num);
+    const isNegative = numStr.startsWith('-');
   
     if (numStr.includes('.')) {
-        numStr = numStr.split('.')[0]; 
+      numStr = numStr.slice(0, numStr.indexOf('.'));
     }
   
-    if (numStr.startsWith('-')) {
+    if (isNegative) {
       numStr = numStr.slice(1); 
     }
   
-    if (!/^\d+$/.test(numStr)) {
+    const numInt = Number(numStr);
+  
+    if (isNaN(numInt)) {
       return NaN;
     }
   
     let sum = 0;
-    for (let i = 0; i < numStr.length; i++) {
-      sum += parseInt(numStr[i]);
+    let temp = Math.abs(numInt); 
+    while (temp > 0) {
+      sum += temp % 10;
+      temp = Math.floor(temp / 10);
     }
+  
     return sum;
   }
-  
-  
- 
-  console.log(sumDigits("123")); 
-  console.log(sumDigits("a123")); 
-  console.log(sumDigits("123a")); 
-  console.log(sumDigits(-123)); 
-  console.log(sumDigits(123.3333)); 
-
+console.log(sumDigits(123));     
+console.log(sumDigits("123"));   
+console.log(sumDigits("a123"));   
+console.log(sumDigits("123a"));   
+console.log(sumDigits(-123));     
+console.log(sumDigits(123.3333));
 
 function displayAnanas() {
     let a = 'a';
     let s = 's';
-    console.log(a + "NaN".toLowerCase()+ a+s);
-}
-
-displayAnanas(); 
-
+    let asa =  Number("ananas"); 
+    console.log(a + String(asa).toLowerCase() + a + s);
+  }
+  
+  displayAnanas(); 
